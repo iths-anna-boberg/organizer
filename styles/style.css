@@ -33,6 +33,11 @@ h1{
     border-bottom: double 5px var(--cinnamon);
 }
 
+.category{
+    color: var(--brown);
+    border-bottom: double 5px var(--cinnamon);
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -58,6 +63,21 @@ h1{
     box-shadow: var(--box-sh);
 }
 
+.hold{
+    border: 8px solid var(--pink);
+    background-color: var(--pink);
+    color: black;
+}
+
+.hovered{
+    background-color: var(--transparent);
+}
+
+.invisible{
+    display: none;
+}
+
+
 @media only screen and (min-device-width: 1224px){
     
     h1{
@@ -69,5 +89,6 @@ h1{
     }
     .card{
         width: 20rem;
+        cursor: pointer;
     }
 }
