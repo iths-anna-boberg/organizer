@@ -8,6 +8,9 @@
     --text: #1F2420;
     --padding-small: 0.5rem;
     --padding-medium: 1rem;
+    --wbkt-box: 10px 24px 24px -20px rgba(115,99,70,0.51);
+    --moz-box: 10px 24px 24px -20px rgba(115,99,70,0.51);
+    --box-sh: 10px 24px 24px -20px rgba(115,99,70,0.51);
 }
 
 body{
@@ -38,25 +41,29 @@ h1{
 .card-container{
     display: flex;
     flex-direction: column;
-    background-color: var(--transparent);
+    background-color: var(--ivory);
     padding: var(--padding-medium);
     margin: var(--padding-medium);
+    border-radius: var(--padding-small);
 }
 
 .card{
     max-width: 95vw;
     padding: var(--padding-small);
     background-color: var(--ivory);
-    border: 1px solid var(--brown);
-    margin: var(--padding-small)
+    border: 1px solid var(--cinnamon);
+    margin: var(--padding-small);
+    -webkit-box-shadow: var(--wbkt-box);
+    -moz-box-shadow: var(--moz-box);
+    box-shadow: var(--box-sh);
 }
 
 @media only screen and (min-device-width: 1224px){
-
+    
     h1{
         font-size: 4.5rem;
     }
-
+    
     .main{
         flex-direction: row;
     }
