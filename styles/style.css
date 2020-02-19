@@ -1,0 +1,66 @@
+:root {
+    --pink: #BF6B7B;
+    --steel: #435759;
+    --ivory: #F2F2F0;
+    --brown: #736346;
+    --cinnamon: #A68660;
+    --transparent: RGBA(242,242,240,0.6);
+    --text: #1F2420;
+    --padding-small: 0.5rem;
+    --padding-medium: 1rem;
+}
+
+body{
+    margin: 0 auto;
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    background-color: var(--steel);
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    background-color: var(--ivory);
+}
+
+h1{
+    color: var(--brown);
+    font-size: 3.8rem;
+    border-top: double 5px var(--cinnamon);
+    border-bottom: double 5px var(--cinnamon);
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--transparent);
+    padding: var(--padding-medium);
+    margin: var(--padding-medium);
+}
+
+.card{
+    max-width: 95vw;
+    padding: var(--padding-small);
+    background-color: var(--ivory);
+    border: 1px solid var(--brown);
+    margin: var(--padding-small)
+}
+
+@media only screen and (min-device-width: 1224px){
+
+    h1{
+        font-size: 4.5rem;
+    }
+
+    .main{
+        flex-direction: row;
+    }
+    .card{
+        width: 20rem;
+    }
+}
