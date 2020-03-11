@@ -33,6 +33,10 @@ h1{
     border-bottom: double 5px var(--cinnamon);
 }
 
+h2{
+    color: var(--brown);
+}
+
 .category{
     color: var(--brown);
     border-bottom: double 5px var(--cinnamon);
@@ -44,6 +48,7 @@ h1{
 }
 
 .card-container{
+    max-width: 95vw;
     display: flex;
     flex-direction: column;
     background-color: var(--ivory);
@@ -53,8 +58,8 @@ h1{
 }
 
 .card{
-    max-width: 95vw;
-    padding: var(--padding-small);
+    padding-left: var(--padding-small);
+    padding-right: var(--padding-small);
     background-color: var(--ivory);
     border: 1px solid var(--cinnamon);
     margin: var(--padding-small);
@@ -80,6 +85,10 @@ h1{
 
 @media only screen and (min-device-width: 1224px){
     
+    header{
+        width: 100%;
+    }
+
     h1{
         font-size: 4.5rem;
     }
@@ -88,7 +97,11 @@ h1{
         flex-direction: row;
     }
     .card{
-        width: 20rem;
+        width: 11rem;
         cursor: pointer;
+    }
+
+    .card-container{
+        width: 300px;
     }
 }
