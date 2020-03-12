@@ -82,6 +82,13 @@ h2{
     display: none;
 }
 
+.category-input{
+    padding: 0.8rem;
+    color: var(--steel);
+    font-size: larger;
+    font-weight: bold;
+}
+
 
 @media only screen and (min-device-width: 1224px){
     

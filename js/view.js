@@ -4,28 +4,38 @@ export default class View{
         this.app = this.getElement("#root");
         this.main = this.getElement(".main");
         this.theCard;
-        this.dragEventListeners();
+        this.parentID;
+        this.newParentID;
+        this.temp;
     }
     
     dragStart(e){
         this.theCard = e.target;
+        this.parentID = e.target.parentElement.id;
+        console.log("drag start, this parent id:",this.parentID)
         this.theCard.className =+ " hold";
-        e.dataTransfer.setData("text/plain", e.target.id);
         e.dataTransfer.setData("application/my-app", e.target.id);
         e.dataTransfer.setData("text/plain", e.target.innerText);
         e.dataTransfer.setData("text/html", e.target.outerHTML);
         e.dataTransfer.setData("text/uri-list", e.target.ownerDocument.location.href);
         e.dataTransfer.dropEffect = "move";
+        this.temp = this.theCard.id
         setTimeout(()=>(this.theCard.className = "invisible"), 0);
-        console.log("start")
+        console.log("drag start, this temp är: ",this.temp)
         
     }
     
-    dragEnd(e){
+    dragEnd(e,handler){
+        console.log("drag end");
+        console.log("this parent id",this.parentID);
+        this.newParentID = e.target.parentElement.id;
+        let id = e.target.id;
+        console.log("new parent id",this.newParentID)
+        console.log("id är",id)
+        // console.log("temp",this.temp)
+        e.target.className = "card";
+        handler(this.parentID,this.newParentID,id);
         
-        this.theCard.className = "card";
-        console.log("drag end")
-      
     }
     
     dragOver(e){
@@ -59,20 +69,21 @@ export default class View{
     dragDrop(e){
         if(e.target.classList.contains("card-container")){
             e.target.className = "card-container"
-        // e.target.append(this.theCard)
         const data = e.dataTransfer.getData("application/my-app");
         e.target.append(document.getElementById(data));
-        console.log("drag drop")
+        console.log("drag drop logga data:", data)
         }
         
     }
     
-    dragEventListeners(){
+    dragEventListeners(handler){
         let card = document.querySelectorAll(".card");
         for(let item of card){
             // console.log(item)
-            item.addEventListener("dragstart", this.dragStart);
-            item.addEventListener("dragend", this.dragEnd);
+            item.addEventListener("dragstart", e=>{
+                this.dragStart(e)});
+            item.addEventListener("dragend", e=>{
+                this.dragEnd(e,handler)});
         }
         let cardContainer = document.querySelectorAll(".card-container");
         for(let container of cardContainer){
@@ -132,4 +143,44 @@ export default class View{
         }
         
     }
+
+    listNameChangeEventListener(handler){
+        let listNames = document.querySelectorAll(".category");
+        for(let name of listNames){
+            name.addEventListener("click", e=>{
+                this.editmode(handler,name, true)})
+        }
+    }
+
+    editmode(handler,name,flag){
+        let id = name.parentElement.id;
+        id = parseInt(id,10);
+        let inputField = this.createHtmlElement("input", "category-input");
+        if(flag){
+            let text = name.innerText;
+            let cardContainer = name.parentElement;
+            name.innerHTML ="";
+            cardContainer.prepend(inputField);
+            inputField.focus();
+            inputField.value = text;
+            inputField.addEventListener("keyup", e=>{
+                if(e.key === "Enter"){ 
+                    inputField.blur()
+                }
+            })
+        }else{
+            name.innerText = inputField.value;
+        }
+
+        inputField.addEventListener("focusout", () => {
+            let input = inputField.value;
+            flag = false;
+            name.innerHTML = input;
+            console.log(id)
+            handler(id,input);
+        })
+
+    }  
+    
+    
 }

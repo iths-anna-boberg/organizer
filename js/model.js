@@ -14,6 +14,7 @@ export default class Model {
     }
 
     deleteCard(listID, cardID){ 
+        console.log("list id",listID,"card ID",cardID)
         this.organizerList.find(object => object.id == listID).cards = this.organizerList.find(object => object.id == listID).cards.filter(item => item.id !==cardID)
         this.save();
     }
@@ -51,7 +52,9 @@ export default class Model {
     }
 
     changeListName(itemID, value){
+        // console.log(itemID)
         let itemToChange = this.getListItem(itemID);
+        // console.log(itemToChange)
         itemToChange.name = value;
         this.save();    
     }
