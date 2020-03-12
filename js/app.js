@@ -4,8 +4,12 @@ import Controller from "./controller.js"
 
 const app = new Controller(new Model(), new View());
 
+// app.view.toggleModal()
+
+
+
 //** LÄGG TILL NY LISTA **
-// let myList = app.model.addListItem("Lista nr 2")
+// let myList = app.model.addListItem("Lista nr 4")
 //** SLUT LÄGG TILL NY LISTA **
 
 // console.log(app.model.getListItem(1582121111184))

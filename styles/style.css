@@ -42,6 +42,10 @@ h2{
     border-bottom: double 5px var(--cinnamon);
 }
 
+.category:hover{
+    cursor: pointer;
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -89,6 +93,40 @@ h2{
     font-weight: bold;
 }
 
+.card-input{
+    padding: 0.8rem;
+    color: var(--brown);
+    font-size: larger;
+    font-weight: bold;
+}
+
+.icon-container{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.material-icons.steel{
+    color: var(--steel);
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.steel:hover{
+    font-size: 2rem;
+}
+
+.fade-layer{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--steel);
+    opacity: 0.25;
+    z-index: 1;
+}
+
 
 @media only screen and (min-device-width: 1224px){
     
@@ -104,7 +142,7 @@ h2{
         flex-direction: row;
     }
     .card{
-        width: 11rem;
+        width: 90%;
         cursor: pointer;
     }
 

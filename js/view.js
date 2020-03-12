@@ -3,10 +3,16 @@ export default class View{
     constructor(){
         this.app = this.getElement("#root");
         this.main = this.getElement(".main");
+        this.body = this.getElement("body");
         this.theCard;
         this.parentID;
         this.newParentID;
         this.temp;
+    }
+
+    toggleModal=()=>{
+        let fade = this.createHtmlElement("div", "fade-layer")
+        this.body.prepend(fade);
     }
     
     dragStart(e){
@@ -128,7 +134,13 @@ export default class View{
                 heading.innerText = item.name;
                 this.main.append(listItem);
                 listItem.append(heading);
-                
+                let iconContainer = this.createHtmlElement("div", "icon-container");
+                let addIcon = this.createHtmlElement("i", "material-icons");
+                addIcon.classList.add("steel")
+                addIcon.innerText = "add_circle_outline";
+                listItem.append(iconContainer);
+                iconContainer.append(addIcon);
+
                 item.cards.forEach(card =>{
                     let cardItem = this.createHtmlElement("article", "card");
                     cardItem.id = card.id;
@@ -144,15 +156,49 @@ export default class View{
         
     }
 
+    addCardListener(handler){
+        let icons = document.querySelectorAll(".steel");
+        for(let icon of icons){
+            icon.addEventListener("click", e=>{
+                this.addCard(handler, icon, true);
+            })
+        }
+    }
+
     listNameChangeEventListener(handler){
         let listNames = document.querySelectorAll(".category");
         for(let name of listNames){
             name.addEventListener("click", e=>{
-                this.editmode(handler,name, true)})
+                this.editmodeList(handler,name, true)})
         }
     }
 
-    editmode(handler,name,flag){
+    addCard(handler, element, flag){
+        let addCardField = this.createHtmlElement("input", "card-input");
+        let container = element.parentElement;
+        let listID = container.parentElement.id;
+        console.log(listID)
+        if(flag){
+            container.appendChild(addCardField);
+            addCardField.value = "Write here ...";
+            addCardField.focus();
+            addCardField.addEventListener("keyup", e=>{
+                if(e.key === "Enter"){ 
+                    addCardField.blur()
+                }
+            })
+            
+            addCardField.addEventListener("focusout", () => {
+                let input = addCardField.value;
+                flag = false;
+                handler(listID,input);
+            })
+
+        }
+
+    }
+
+    editmodeList(handler,name,flag){
         let id = name.parentElement.id;
         id = parseInt(id,10);
         let inputField = this.createHtmlElement("input", "category-input");

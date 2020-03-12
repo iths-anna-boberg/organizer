@@ -11,10 +11,17 @@ export default class Controller{
         this.view.displayLists(this.list);
         this.view.dragEventListeners(this.moveCard_handler);
         this.view.listNameChangeEventListener(this.changeListName_handler);
+        this.view.addCardListener(this.addCard_handler);
     }
 
     changeListName_handler =(id, value)=>{
         this.model.changeListName(id, value);
+        this.render();
+    }
+
+    addCard_handler = (id, value)=>{
+        let card = this.model.createCard(value);
+        this.model.addCardToListItem(id, card);
         this.render();
     }
 
