@@ -227,6 +227,14 @@ export default class View{
         })
 
     }  
+
+    newListItemListener(handler){ //SKA LYSSNA EFTER KLICK PÅ "SKAPA NY LISTA-KNAPP, FINNS EJ ÄNNU"
+
+    }
+
+    addListItem(handler, flag){ //SKA LÄGGA TILL SJÄLVA LISTAN
+
+    }
     
     
 }
