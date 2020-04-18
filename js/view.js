@@ -153,6 +153,9 @@ export default class View{
             })
             
         }
+        let createListDiv = this.createHtmlElement ("div", "new-list");
+        this.main.append(createListDiv);
+        createListDiv.innerHTML = `<p id="new-list">Create new List?<p>`
         
     }
 
@@ -229,12 +232,31 @@ export default class View{
     }  
 
     newListItemListener(handler){ //SKA LYSSNA EFTER KLICK PÅ "SKAPA NY LISTA-KNAPP, FINNS EJ ÄNNU"
-
+        const create = document.querySelector("#new-list");
+        create.addEventListener("click", e =>{
+            this.addListItem(handler, true);
+        })
     }
 
     addListItem(handler, flag){ //SKA LÄGGA TILL SJÄLVA LISTAN
-
+        const newListInput = this.createHtmlElement("input", "category-input");
+        const container = document.querySelector(".new-list");
+        if(flag){
+            container.innerHTML ="";
+            container.appendChild(newListInput);
+            newListInput.value = "Name your list!"
+            newListInput.focus();
+            newListInput.addEventListener("keyup", e=>{
+                if(e.key === "Enter"){ 
+                    newListInput.blur()
+                }
+            })
+        }
+        newListInput.addEventListener("focusout", () => {
+            let input = newListInput.value;
+            flag = false;
+            handler(input);
+        })
+        
     }
-    
-    
 }
